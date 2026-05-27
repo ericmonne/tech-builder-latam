@@ -4,6 +4,14 @@ import { BookOpen, BrainCircuit, Cloud, Code2, Database, GitBranch, Rocket, Spar
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
+// --- CONFIGURAÇÃO DE CORES ONE (Oracle Next Education) ---
+const COLORS = {
+  primary: "#1E1B18",    // Preto suave (texto/logo)
+  accent: "#C8A27A",     // Dourado/Tierra (detalhes)
+  bg: "#FDFCFB",         // Off-white/Creme claro (fundo)
+  secondaryBg: "#F1ECE7" // Bege claro (cards/detalhes)
+};
+
 const formations = [
   {
     id: 'nivelacion',
@@ -110,29 +118,82 @@ const paths = [
     id: 'beginner',
     title: 'Estoy empezando o vengo de otra área',
     icon: Compass,
-    steps: ['Nivelación', 'Desarrollo y Orquestación con IA Generativa', 'Challenge', 'Oracle Cloud Infrastructure si necesitas publicar tu proyecto'],
-    note: 'Prioriza fundamentos, Python, Git/GitHub y conceptos de IA antes de avanzar a agentes o RAG avanzado.',
+
+    totalHours: 65,
+    weeklyHours: '6-8h',
+    intensity: 'Moderado',
+    duration: '8 semanas',
+
+    steps: [
+      'Nivelación',
+      'Desarrollo y Orquestación con IA Generativa',
+      'Challenge',
+    ],
+
+    note:
+      'Ruta recomendada para quienes están comenzando. La combinación de Nivelación e IA Generativa ofrece una base sólida para participar del challenge con más seguridad y autonomía.',
   },
+
   {
     id: 'backend',
     title: 'Quiero crecer en back-end o full-stack',
     icon: Code2,
-    steps: ['Nivelación si necesitas reforzar bases', 'Desarrollo y Orquestación con IA Generativa', 'Ingeniería de Agentes y Automatización con IA', 'Oracle Cloud Infrastructure', 'Challenge'],
-    note: 'Esta secuencia conecta programación, agentes, automatización y despliegue en nube.',
+
+    totalHours: 65,
+    weeklyHours: '7-8h',
+    intensity: 'Moderado',
+    duration: '8 semanas',
+
+    steps: [
+      'Desarrollo y Orquestación con IA Generativa',
+      'Ingeniería de Agentes y Automatización con IA',
+      'Oracle Cloud Infrastructure',
+      'Challenge',
+    ],
+
+    note:
+      'Una ruta orientada a quienes quieren crear aplicaciones más completas, automatizaciones inteligentes y proyectos desplegados en la nube.',
   },
+
   {
     id: 'data',
     title: 'Me interesa ciencia de datos o IA aplicada',
     icon: Database,
-    steps: ['Nivelación', 'Desarrollo y Orquestación con IA Generativa', 'Inteligencia de Datos y RAG Avanzado', 'Challenge'],
-    note: 'Ideal para construir asistentes con documentos, CSVs, embeddings, pipelines RAG y visualizaciones.',
+
+    totalHours: 89,
+    weeklyHours: '10-12h',
+    intensity: 'Intensivo',
+    duration: '8 semanas',
+
+    steps: [
+      'Nivelación',
+      'Desarrollo y Orquestación con IA Generativa',
+      'Inteligencia de Datos y RAG Avanzado',
+      'Challenge',
+    ],
+
+    note:
+      'La ruta más intensa del programa. Recomendada para estudiantes que quieran profundizar en RAG, embeddings, análisis de datos y asistentes con información propia.',
   },
+
   {
     id: 'frontend',
     title: 'Tengo perfil front-end y quiero sumar IA',
     icon: Sparkles,
-    steps: ['Desarrollo y Orquestación con IA Generativa', 'Ingeniería de Agentes y Automatización con IA', 'Oracle Cloud Infrastructure si quieres publicar', 'Challenge'],
-    note: 'Puedes usar IA para prototipar, mejorar código, crear interfaces con asistentes y conectar automatizaciones.',
+
+    totalHours: 47,
+    weeklyHours: '5-6h',
+    intensity: 'Ligero a moderado',
+    duration: '8 semanas',
+
+    steps: [
+      'Desarrollo y Orquestación con IA Generativa',
+      'Ingeniería de Agentes y Automatización con IA',
+      'Challenge',
+    ],
+
+    note:
+      'Ideal para desarrolladores front-end que quieren integrar IA, asistentes y automatizaciones en sus proyectos sin enfocarse profundamente en infraestructura o ciencia de datos.',
   },
 ];
 
@@ -160,6 +221,24 @@ export default function FormacionesG10Site() {
           <div className="absolute left-10 top-10 h-72 w-72 rounded-full bg-indigo-500 blur-3xl" />
           <div className="absolute bottom-0 right-10 h-80 w-80 rounded-full bg-cyan-500 blur-3xl" />
         </div>
+
+        {/* ÁREA DA LOGO ATUALIZADA */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-6 mb-12 border-l-4 border-[#1E1B18] pl-6"
+        >
+          <div className="flex flex-col">
+            <span className="text-3xl font-black tracking-tighter uppercase leading-none">ONE</span>
+            <span className="text-[10px] font-medium leading-tight">Oracle Next<br />Education</span>
+          </div>
+
+          <div className="h-12 w-px bg-slate-300" />
+
+          <div className="flex flex-col">
+            <span className="text-3xl font-black tracking-tighter uppercase leading-none">AI FOR TECH</span>
+          </div>
+        </motion.div>
 
         <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
@@ -236,6 +315,27 @@ export default function FormacionesG10Site() {
                             <p className="text-sm font-medium text-slate-700">{step}</p>
                           </div>
                         ))}
+                      </div>
+                      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                        <div className="rounded-2xl bg-slate-100 p-3">
+                          <p className="text-xs text-slate-500">Carga total</p>
+                          <p className="text-lg font-bold">{path.totalHours}h</p>
+                        </div>
+
+                        <div className="rounded-2xl bg-slate-100 p-3">
+                          <p className="text-xs text-slate-500">Semanal</p>
+                          <p className="text-lg font-bold">{path.weeklyHours}</p>
+                        </div>
+
+                        <div className="rounded-2xl bg-slate-100 p-3">
+                          <p className="text-xs text-slate-500">Duración</p>
+                          <p className="text-lg font-bold">{path.duration}</p>
+                        </div>
+
+                        <div className="rounded-2xl bg-slate-100 p-3">
+                          <p className="text-xs text-slate-500">Ritmo</p>
+                          <p className="text-sm font-bold">{path.intensity}</p>
+                        </div>
                       </div>
                       <p className="mt-5 rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600">{path.note}</p>
                     </CardContent>
@@ -356,25 +456,105 @@ export default function FormacionesG10Site() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 text-slate-900 sm:px-10 lg:px-20">
+      <section className="bg-[#FDFCFB] px-6 py-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-6 lg:grid-cols-3">
-            <Card className="rounded-3xl border-slate-200 shadow-sm lg:col-span-2">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold">Consejo final para estudiantes</h2>
-                <p className="mt-4 text-lg leading-8 text-slate-600">No elijas la formación más larga: elige la más útil para tu objetivo. Si estás empezando, prioriza Nivelación. Si quieres construir soluciones con IA, avanza hacia IA Generativa, Agentes o RAG. Si quieres publicar tu proyecto, suma OCI.</p>
-              </CardContent>
-            </Card>
-            <Card className="rounded-3xl border-slate-200 bg-slate-900 text-white shadow-sm">
-              <CardContent className="p-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Recordatorio</p>
-                <h3 className="mt-3 text-2xl font-bold">Las formaciones no son obligatorias</h3>
-                <p className="mt-4 leading-7 text-slate-300">Son rutas de apoyo para que llegues al challenge con más recursos, ideas y confianza.</p>
-              </CardContent>
-            </Card>
+          <div className="grid gap-8 lg:grid-cols-5">
+
+            {/* Bloco de Conselho - FOCO EM LEGIBILIDADE */}
+            <div className="lg:col-span-3 relative overflow-hidden rounded-[2.5rem] bg-white border-2 border-[#1E1B18] p-8 sm:p-12 shadow-2xl">
+              <div className="relative">
+                <span className="inline-block mb-4 px-4 py-1 rounded-full bg-[#C8A27A] text-[#1E1B18] text-xs font-bold uppercase tracking-widest">
+                  Tip de Ouro
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-black text-[#1E1B18] leading-tight">
+                  Consejo final para <br />estudiantes
+                </h2>
+                <p className="mt-6 text-xl leading-relaxed text-[#5B5550]">
+                  No elijas la formación más larga: <span className="text-[#1E1B18] font-bold border-b-4 border-[#C8A27A]">elige la más útil para tu objetivo.</span>
+                </p>
+
+                {/* AQUI ESTAVA O ERRO: Corrigido para texto escuro em fundo bege */}
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#F1ECE7] border border-[#E9E0D6]">
+                    <div className="w-3 h-3 rounded-full bg-[#C8A27A] shrink-0" />
+                    <p className="text-sm font-bold text-[#3C2F25]">Prioriza Nivelación si estás empezando.</p>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#F1ECE7] border border-[#E9E0D6]">
+                    <div className="w-3 h-3 rounded-full bg-[#C8A27A] shrink-0" />
+                    <p className="text-sm font-bold text-[#3C2F25]">Suma OCI para publicar tu proyecto.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bloco de Recordatorio - ALTO CONTRASTE (Preto e Dourado) */}
+            <div className="lg:col-span-2 flex flex-col justify-center rounded-[2.5rem] bg-[#1E1B18] p-8 sm:p-12 text-white">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A27A]">
+                IMPORTANTE
+              </p>
+              <h3 className="mt-4 text-3xl font-black leading-tight text-white">
+                Las formaciones <span className="text-[#C8A27A]">no son</span> obligatorias
+              </h3>
+              <p className="mt-6 text-lg text-slate-300 leading-relaxed">
+                Son rutas de apoyo para que llegues al <span className="text-white font-bold border-b border-[#C8A27A]">challenge</span> con más recursos e ideas.
+              </p>
+            </div>
+
           </div>
         </div>
       </section>
+
+      <footer className="bg-[#1E1B18] text-white px-6 py-12 sm:px-10 lg:px-20 border-t border-[#C8A27A]/20">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 items-start">
+
+            {/* Coluna 1: Logo e Marca */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 border-l-2 border-[#C8A27A] pl-4">
+                <div className="flex flex-col">
+                  <span className="text-xl font-black tracking-tighter uppercase leading-none">ONE</span>
+                  <span className="text-[8px] font-medium leading-tight opacity-70">Oracle Next Education</span>
+                </div>
+                <div className="h-8 w-px bg-white/20" />
+                <span className="text-xl font-bold tracking-tighter text-[#C8A27A]">AI FOR TECH</span>
+              </div>
+              <p className="text-sm text-slate-400 max-w-xs leading-relaxed">
+                Un programa de educación tecnológica enfocado en la empleabilidad y el dominio de la Inteligencia Artificial.
+              </p>
+            </div>
+
+            {/* Coluna 2: Contato (Destaque) */}
+            <div className="space-y-4">
+              <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#C8A27A]">
+                Soporte y Contacto
+              </h4>
+              <div className="flex flex-col gap-2">
+                <p className="text-xs text-slate-400">¿Tienes dudas sobre el programa?</p>
+                <a
+                  href="mailto:contacto-one@aluracursos.com"
+                  className="text-lg font-semibold hover:text-[#C8A27A] transition-colors flex items-center gap-2 group"
+                >
+                  contacto-one@aluracursos.com
+                  <div className="h-1 w-1 rounded-full bg-[#C8A27A] opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </div>
+            </div>
+
+        
+
+          </div>
+
+          {/* Linha Inferior: Copyright */}
+          <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-[10px] uppercase tracking-widest text-slate-500">
+              © 2026 AI FOR TECH - Todos los derechos reservados
+            </p>
+            <div className="flex gap-6">
+              {/* Espaço para ícones de redes sociais se houver */}
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
